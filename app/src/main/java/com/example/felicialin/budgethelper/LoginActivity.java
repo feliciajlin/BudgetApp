@@ -1,44 +1,62 @@
 package com.example.felicialin.budgethelper;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
-import android.view.KeyEvent;
+import android.text.Editable;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.reimaginebanking.api.nessieandroidsdk.NessieError;
+import com.reimaginebanking.api.nessieandroidsdk.NessieResultsListener;
+import com.reimaginebanking.api.nessieandroidsdk.models.Customer;
+import com.reimaginebanking.api.nessieandroidsdk.requestclients.NessieClient;
+
 import java.util.List;
-
-import static android.Manifest.permission.READ_CONTACTS;
-
 /**
- * A login screen that offers login via email/password.
+ * A login screen
  */
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+    List<Customer> customers;
+    static Customer currentCustomer;
+    EditText mCustomerId;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        NessieClient client = NessieClient.getInstance("d9d2932feb9206207df39b565750ceb4");
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        mCustomerId = (EditText) findViewById(R.id.username);
+
+        client.CUSTOMER.getCustomers(new NessieResultsListener() {
+            @Override
+            public void onSuccess(Object result) {
+                customers = (List<Customer>) result;
+            }
+
+            @Override
+            public void onFailure(NessieError error) {
+//                handle Error
+            }
+        });
+
+        Button mSignInButton = (Button) findViewById(R.id.sign_in_button);
+        mSignInButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick (View view) {
+        Editable firstName = mCustomerId.getText();
+        for (Customer c: customers) {
+            if (c.getFirstName().equals(firstName)) {
+                currentCustomer = c;
+            }
+        }
+        Intent i=new Intent(LoginActivity.this, HomePage.class);
+        startActivity(i);
+    }
 }
+
 
