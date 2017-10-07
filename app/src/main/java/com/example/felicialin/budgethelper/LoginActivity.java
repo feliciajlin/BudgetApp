@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         for (Customer c: customers) {
             if (c.getFirstName().equals(firstName)) {
                 currentCustomer = c;
+                break;
             }
         }
         Intent i=new Intent(LoginActivity.this, HomePage.class);
