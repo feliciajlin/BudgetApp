@@ -21,10 +21,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     List<Customer> customers;
     static Customer currentCustomer;
     EditText mCustomerId;
+    NessieClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        NessieClient client = NessieClient.getInstance("d9d2932feb9206207df39b565750ceb4");
+        client = NessieClient.getInstance("d9d2932feb9206207df39b565750ceb4");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -51,7 +52,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick (View view) {
         Editable firstName = mCustomerId.getText();
         for (Customer c: customers) {
-            if (c.getFirstName().equals(firstName)) {
+            if (c.getFirstName().equals(firstName.toString())) {
                 currentCustomer = c;
                 break;
             }
@@ -60,5 +61,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         startActivity(i);
     }
 }
+
+
+
+
 
 
