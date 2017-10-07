@@ -19,4 +19,6 @@
     <string name = "sign_in">Sign In</string>
     <string name = "login_first">First Name</string>
     <string name = "login_second">Empty for Now</string>
+    <string name = "category_button">Categories</string>
+    <string name = "history_button">History</string>
 </resources>

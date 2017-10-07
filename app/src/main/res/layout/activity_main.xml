@@ -22,8 +22,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:padding="60dp"
-            android:textSize="30dp"
-            android:letterSpacing="10px"
+            android:textSize="30sp"
             android:text="BUDGET\nTRACKER" />
 
         <Button
