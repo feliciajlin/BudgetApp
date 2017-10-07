@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onFailure(NessieError error) {
 //                handle Error
+                customers = null;
             }
         });
 
