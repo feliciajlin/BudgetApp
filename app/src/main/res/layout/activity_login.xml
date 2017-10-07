@@ -8,54 +8,70 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#BDBDBD"
     tools:context="com.example.felicialin.budgethelper.LoginActivity">
 
-        <RelativeLayout
-            android:id="@+id/login_form"
+    <RelativeLayout
+        android:id="@+id/login_form"
+        android:layout_width="320dp"
+        android:layout_height="350dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/rectangle"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/signin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:layout_marginTop="170dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@drawable/rectangle">
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="60dp"
+            android:hint="@string/sign_in"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textSize="30sp"
+            android:textAlignment="center"
+            android:padding="35dp" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/signin"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="60dp"
+            android:hint="@string/login_first"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="15dp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/username"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="60dp"
+            android:hint="@string/login_second"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="15dp" />
 
 
-
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:padding="15dp"
-                android:layout_marginLeft="60dp"
-                android:hint="@string/login_first"
-                android:inputType="text"
-                android:maxLines="1" />
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:padding="15dp"
-                android:layout_marginLeft="60dp"
-                android:hint="@string/login_second"
-                android:inputType="text"
-                android:maxLines="1"
-                android:layout_below="@id/username"/>
+        <Button
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password"
+            android:layout_centerHorizontal="true"
+            android:text="@string/login"
+            android:textStyle="bold"
+            android:layout_marginTop="55dp"
+            android:paddingTop="10dp"/>
 
 
-            <Button
-                android:id="@+id/sign_in_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="@string/sign_in"
-                android:textStyle="bold"
-                android:layout_below="@id/password"/>
+    </RelativeLayout>
 
-        </RelativeLayout>
 </RelativeLayout>
