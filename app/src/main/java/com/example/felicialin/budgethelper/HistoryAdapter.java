@@ -10,12 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder>{
-    private List<Purchase> pDataSet;
+    private ArrayList<Purchase> pDataSet;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
         public ViewHolder(TextView view) {
             super(view);
+
             mTextView = view;
         }
     }
@@ -28,7 +29,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     public HistoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //This needs to be fixed!
         TextView v = (TextView) android.view.LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.my_text_view, parent, false);
+                .inflate(R.layout.activity_home_page, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -36,7 +37,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         //this too!!!
-        holder.mTextView.setText(mDataSet[position]);
+        //holder.mTextView.setText(pDataSet.get(position));
     }
 
     @Override
