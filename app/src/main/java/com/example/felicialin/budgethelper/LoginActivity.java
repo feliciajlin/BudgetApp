@@ -14,6 +14,9 @@ import com.reimaginebanking.api.nessieandroidsdk.models.Customer;
 import com.reimaginebanking.api.nessieandroidsdk.requestclients.NessieClient;
 
 import java.util.List;
+
+import static android.view.View.VISIBLE;
+
 /**
  * A login screen
  */
@@ -37,12 +40,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick (View view) {
-        //start spinny
+        findViewById(R.id.indeterminateBar).setVisibility(View.VISIBLE);
 
         client.CUSTOMER.getCustomers(new NessieResultsListener() {
             @Override
             public void onSuccess(Object result) {
-                //end the spinny
+                findViewById(R.id.indeterminateBar).setVisibility(View.INVISIBLE);
 
                 customers = (List<Customer>) result;
 
@@ -59,10 +62,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onFailure(NessieError error) {
-                //end the spinny
+                findViewById(R.id.indeterminateBar).setVisibility(View.INVISIBLE);
 
-                //show an error message to user using a "toast"
-//                handle Error
                 customers = null;
             }
         });
