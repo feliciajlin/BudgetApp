@@ -30,5 +30,10 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:26.+'
     compile 'com.reimaginebanking.api:nessie-android-sdk:1.0.4'
+    compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
     testCompile 'junit:junit:4.12'
+}
+
+repositories {
+    maven { url "https://jitpack.io" }
 }
