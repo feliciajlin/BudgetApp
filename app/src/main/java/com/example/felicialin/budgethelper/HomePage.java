@@ -37,18 +37,27 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
 
         categoryButton = (Button) findViewById(R.id.category_button);
         categoryButton.setOnClickListener(this);
+
         historyButton = (Button) findViewById(R.id.history_button);
         historyButton.setOnClickListener(this);
 
         getAccounts(LoginActivity.currentCustomer);
 
+
+        // Create some chart
         PieChart pieChart = (PieChart) findViewById(R.id.piechart);
         pieChart.setUsePercentValues(true);
 
-        ArrayList<Entry> values = new ArrayList<>();
-        addValues(values);
-        PieDataSet dataSet = new PieDataSet(values, "Monthly Budget");
-        ArrayList<String> categories = new ArrayList<>();
+        ArrayList<Entry> yvalues = new ArrayList<Entry>();
+        yvalues.add(new Entry(8f, 0));
+        yvalues.add(new Entry(15f, 1));
+        yvalues.add(new Entry(12f, 2));
+        yvalues.add(new Entry(25f, 3));
+        yvalues.add(new Entry(23f, 4));
+        yvalues.add(new Entry(17f, 5));
+        PieDataSet dataSet = new PieDataSet(yvalues, "Election Results");
+
+        ArrayList<String> categories = new ArrayList<String>();
         addCategories(categories);
 
         PieData data = new PieData(categories, dataSet);
@@ -66,23 +75,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
         pieChart.animateXY(1400, 1400);
     }
 
-    public void addValues(ArrayList<Entry> vals) {
-        // TODO: Change values
-        vals.add(new Entry(8f, 0));
-        vals.add(new Entry(15f, 1));
-        vals.add(new Entry(12f, 2));
-        vals.add(new Entry(25f, 3));
-        vals.add(new Entry(23f, 4));
-        vals.add(new Entry(17f, 4));
-    }
-
     public void addCategories(ArrayList<String> cats) {
         // TODO: Change types
         cats.add("Food");
         cats.add("Clothing");
-        cats.add("Bills");
-        cats.add("Housing");
-        cats.add("Gas");
+        cats.add("March");
+        cats.add("April");
+        cats.add("May");
+        cats.add("June");
     }
 
     @Override
