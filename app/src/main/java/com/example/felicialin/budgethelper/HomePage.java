@@ -41,12 +41,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
         historyButton.setOnClickListener(this);
 
         getAccounts(LoginActivity.currentCustomer);
-        //getPurchasesFromAccounts(customerAccounts);
     }
 
     @Override
     public void onClick(View view) {
-        //categoryButton.setFocusable(!categoryButton.isFocusableInTouchMode());
         if (view.equals(categoryButton)) {
             historyButton.setSelected(false);
             view.setSelected(true);
@@ -64,6 +62,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void onSuccess(Object result) {
                 customerAccounts = (List<Account>) result;
+                getPurchasesFromAccounts(customerAccounts);
             }
 
             @Override
