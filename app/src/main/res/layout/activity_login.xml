@@ -32,6 +32,7 @@
                 android:padding="15dp"
                 android:layout_marginLeft="60dp"
                 android:hint="@string/login_first"
+                android:text="Pattie"
                 android:inputType="text"
                 android:maxLines="1" />
 
