@@ -17,6 +17,7 @@ import com.reimaginebanking.api.nessieandroidsdk.requestclients.NessieClient;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 public class HomePage extends AppCompatActivity implements View.OnClickListener{
     Button categoryButton;
@@ -62,7 +63,11 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void onSuccess(Object result) {
                 customerAccounts = (List<Account>) result;
-                getPurchasesFromAccounts(customerAccounts);
+                try {
+                    getPurchasesFromAccounts(customerAccounts);
+                } catch (Exception e) {
+                    //handle this ugh
+                }
             }
 
             @Override
@@ -72,7 +77,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
         });
     }
 
-    public void getPurchasesFromAccounts(List<Account> accounts) {
+    public void getPurchasesFromAccounts(List<Account> accounts) throws InterruptedException{
         for (Account account : accounts) {
             client.PURCHASE.getPurchasesByAccount(account.getAccountNumber(), new NessieResultsListener() {
                 @Override
@@ -86,6 +91,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
                 }
             });
 
+            wait(5000);
             accountPurchases.put(account.getAccountNumber(), purchases);
         }
 
