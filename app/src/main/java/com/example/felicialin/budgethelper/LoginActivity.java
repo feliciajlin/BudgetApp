@@ -31,34 +31,43 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         mCustomerId = (EditText) findViewById(R.id.username);
 
-        client.CUSTOMER.getCustomers(new NessieResultsListener() {
-            @Override
-            public void onSuccess(Object result) {
-                customers = (List<Customer>) result;
-            }
-
-            @Override
-            public void onFailure(NessieError error) {
-//                handle Error
-                customers = null;
-            }
-        });
-
         Button mSignInButton = (Button) findViewById(R.id.sign_in_button);
         mSignInButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick (View view) {
-        Editable firstName = mCustomerId.getText();
-        for (Customer c: customers) {
-            if (c.getFirstName().equals(firstName.toString())) {
-                currentCustomer = c;
-                break;
+        //start spinny
+
+        client.CUSTOMER.getCustomers(new NessieResultsListener() {
+            @Override
+            public void onSuccess(Object result) {
+                //end the spinny
+
+                customers = (List<Customer>) result;
+
+                Editable firstName = mCustomerId.getText();
+                for (Customer c: customers) {
+                    if (c.getFirstName().equals(firstName.toString())) {
+                        currentCustomer = c;
+                        break;
+                    }
+                }
+                Intent i=new Intent(LoginActivity.this, HomePage.class);
+                startActivity(i);
             }
-        }
-        Intent i=new Intent(LoginActivity.this, HomePage.class);
-        startActivity(i);
+
+            @Override
+            public void onFailure(NessieError error) {
+                //end the spinny
+
+                //show an error message to user using a "toast"
+//                handle Error
+                customers = null;
+            }
+        });
+
+
     }
 }
 

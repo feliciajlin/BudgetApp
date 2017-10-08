@@ -41,7 +41,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
         historyButton.setOnClickListener(this);
 
         getAccounts(LoginActivity.currentCustomer);
-        getPurchasesFromAccounts(customerAccounts);
+        //getPurchasesFromAccounts(customerAccounts);
     }
 
     @Override
